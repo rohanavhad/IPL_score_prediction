@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Score Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, select {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cricket Score Prediction</h1>
+        <form method="post">
+            <label for="batting_team">Batting Team:</label>
+            <input type="text" id="batting_team" name="batting_team" required>
+
+            <label for="bowling_team">Bowling Team:</label>
+            <input type="text" id="bowling_team" name="bowling_team" required>
+
+            <label for="overs">Overs:</label>
+            <input type="number" id="overs" name="overs" step="0.1" required>
+
+            <label for="runs">Runs:</label>
+            <input type="number" id="runs" name="runs" required>
+
+            <label for="wickets">Wickets:</label>
+            <input type="number" id="wickets" name="wickets" required>
+
+            <label for="runs_last_5">Runs Last 5 Overs:</label>
+            <input type="number" id="runs_last_5" name="runs_last_5" required>
+
+            <label for="wickets_last_5">Wickets Last 5 Overs:</label>
+            <input type="number" id="wickets_last_5" name="wickets_last_5" required>
+
+            <button type="submit">Predict Score</button>
+        </form>
+        {% if predicted_score is not none %}
+        <div id="result">
+            <p>Predicted Score: {{ predicted_score }}</p>
+            <p><strong>Input Data:</strong></p>
+            <p>Batting Team: {{ batting_team }}</p>
+            <p>Bowling Team: {{ bowling_team }}</p>
+            <p>Overs: {{ overs }}</p>
+            <p>Runs: {{ runs }}</p>
+            <p>Wickets: {{ wickets }}</p>
+            <p>Runs Last 5 Overs: {{ runs_last_5 }}</p>
+            <p>Wickets Last 5 Overs: {{ wickets_last_5 }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
