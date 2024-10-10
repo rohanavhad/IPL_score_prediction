@@ -1,39 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket Score Prediction</title>
+    <title>Cricket Score Predictor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
             background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
+            margin: 50px auto;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
+            color: #333;
         }
         form {
             display: flex;
             flex-direction: column;
         }
-        input, select {
-            margin-bottom: 10px;
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        select, input {
             padding: 10px;
             font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         button {
             padding: 10px;
-            background-color: #007bff;
+            background-color: #28a745;
             color: white;
             border: none;
             border-radius: 5px;
@@ -41,53 +49,65 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #218838;
         }
-        #result {
+        .prediction {
             margin-top: 20px;
-            font-size: 18px;
             text-align: center;
+            font-size: 20px;
+            color: #007bff;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cricket Score Prediction</h1>
-        <form method="post">
-            <label for="batting_team">Batting Team:</label>
-            <input type="text" id="batting_team" name="batting_team" required>
+        <h1>Cricket Score Predictor</h1>
+        <form method="POST">
+            <label for="batting_team">Batting Team</label>
+            <select name="batting_team" id="batting_team">
+                <option value="Chennai Super Kings">Chennai Super Kings</option>
+                <option value="Delhi Daredevils">Delhi Daredevils</option>
+                <option value="Kings XI Punjab">Kings XI Punjab</option>
+                <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                <option value="Mumbai Indians">Mumbai Indians</option>
+                <option value="Rajasthan Royals">Rajasthan Royals</option>
+                <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+            </select>
 
-            <label for="bowling_team">Bowling Team:</label>
-            <input type="text" id="bowling_team" name="bowling_team" required>
+            <label for="bowling_team">Bowling Team</label>
+            <select name="bowling_team" id="bowling_team">
+                <option value="Chennai Super Kings">Chennai Super Kings</option>
+                <option value="Delhi Daredevils">Delhi Daredevils</option>
+                <option value="Kings XI Punjab">Kings XI Punjab</option>
+                <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                <option value="Mumbai Indians">Mumbai Indians</option>
+                <option value="Rajasthan Royals">Rajasthan Royals</option>
+                <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+            </select>
 
-            <label for="overs">Overs:</label>
-            <input type="number" id="overs" name="overs" step="0.1" required>
+            <label for="runs">Current Runs</label>
+            <input type="number" name="runs" id="runs" required>
 
-            <label for="runs">Runs:</label>
-            <input type="number" id="runs" name="runs" required>
+            <label for="wickets">Wickets Lost</label>
+            <input type="number" name="wickets" id="wickets" required>
 
-            <label for="wickets">Wickets:</label>
-            <input type="number" id="wickets" name="wickets" required>
+            <label for="overs">Overs Completed</label>
+            <input type="number" step="0.1" name="overs" id="overs" required>
 
-            <label for="runs_last_5">Runs Last 5 Overs:</label>
-            <input type="number" id="runs_last_5" name="runs_last_5" required>
+            <label for="runs_last_5">Runs in Last 5 Overs</label>
+            <input type="number" name="runs_last_5" id="runs_last_5" required>
 
-            <label for="wickets_last_5">Wickets Last 5 Overs:</label>
-            <input type="number" id="wickets_last_5" name="wickets_last_5" required>
+            <label for="wickets_last_5">Wickets in Last 5 Overs</label>
+            <input type="number" name="wickets_last_5" id="wickets_last_5" required>
 
             <button type="submit">Predict Score</button>
         </form>
-        {% if predicted_score is not none %}
-        <div id="result">
-            <p>Predicted Score: {{ predicted_score }}</p>
-            <p><strong>Input Data:</strong></p>
-            <p>Batting Team: {{ batting_team }}</p>
-            <p>Bowling Team: {{ bowling_team }}</p>
-            <p>Overs: {{ overs }}</p>
-            <p>Runs: {{ runs }}</p>
-            <p>Wickets: {{ wickets }}</p>
-            <p>Runs Last 5 Overs: {{ runs_last_5 }}</p>
-            <p>Wickets Last 5 Overs: {{ wickets_last_5 }}</p>
+
+        {% if prediction %}
+        <div class="prediction">
+            Predicted Score: {{ prediction }}
         </div>
         {% endif %}
     </div>
