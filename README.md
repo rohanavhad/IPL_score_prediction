@@ -2,6 +2,8 @@
 
 ## Overview
 This project predicts the final score of Indian Premier League (IPL) matches using machine learning techniques, specifically a Random Forest regression model. The model uses historical match data, including team statistics, player performances, and match conditions, to provide accurate predictions for IPL match scores.
+![image](https://github.com/user-attachments/assets/5347b34a-5acf-4deb-9bd3-eb0e57caff69)
+
 
 ## Features
 - **Score Prediction:** The model predicts the final score based on key match features like overs, wickets, run rate, and player statistics.
